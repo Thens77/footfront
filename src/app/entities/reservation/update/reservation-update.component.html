@@ -1,0 +1,43 @@
+<section id="back" class="map_wrapper clearfix">
+    <div id=map-section></div>
+    <div class=container>
+        <div class=row>
+            <div class=contact_form>
+                <h2 class=heading>Great <span> Choice</span></h2>
+
+                <p class=headParagraph>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat quisquam reprehenderit, blanditiis nam debitis libero facilis illum repudiandae eveniet voluptatibus quibusdam illo ea nisi ipsa accusantium nobis animi asperiores quaerat
+                    ,Lorem ipsum dolor sit amet .</p>
+
+                <form data-parsley-validate="" name=contact class="formcontact clearfix">
+                    <div class=form-group><input type=text class=form-control name=fullname id="fullname" placeholder="Full Name" required="" data-parsley-required-message="please insert Name">
+                    </div>
+                    <div class=form-group><input type=text class=form-control name=phone id="phone" placeholder=Phone required="" data-parsley-required-message="please insert Phone No">
+                    </div>
+                    <div class=form-group><input type=date [(ngModel)]="dateres" (ngModelChange)="loadCreneau();" class=form-control name=timeres id="timeres" placeholder=Time required="" data-parsley-required-message="please insert Time of reservation ">
+                    </div>
+                    <div class=form-group><input type=number class=form-control name=numberplayers id="numberplayers" placeholder="number of players" required="" data-parsley-required-message="please insert number of personne ">
+                    </div>
+                    <div class=form-group><input type=text class=form-control name=CIN id="CIN" placeholder=CIN required="" data-parsley-required-message="please insert subject">
+                    </div>
+                    <div class=form-group><input type=email class=form-control name=email id="email" placeholder=Email required="" data-parsley-required-message="please insert Email">
+                    </div>
+                    <div class=form-group>
+                        <select style="background-color:rgba(0, 0, 0, 0.2); -webkit-appearance:none;" [(ngModel)]="selectedValue" name="selectCreneau" id="test" class="unconditionnaly form-control">
+                            <option value="" selected disabled hidden>--TimeFrame Available--</option>
+                            <option *ngFor='let o of availablecreneau'>{{o.heureDebut}} --> {{o.heureFin}}</option>
+                           
+                        </select>
+                    </div>
+                    <h1 style="color: white;">{{selectedValue}}</h1>
+                    <h1 style="color: white;">{{dateres}}</h1>
+                    <h1 style="color: white;">{{selectedterrain}}</h1>
+                    <input name="id_terrain" [(ngModel)]="selectedterrain" id="id_terrain" type="number" value="1" autocomplete="off" hidden>
+
+
+                    <button type=submit class="btn btn-red" id=send>send Us</button>
+                    <div class=form-message></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
