@@ -7,18 +7,18 @@ export interface IProprietaire {
   email?: string;
   number?: number;
   cin?: string;
-  isAActive?: boolean;
+  isActive?: boolean;
 }
 export class Proprietaire implements IProprietaire {
   constructor(
-    public id: number,
-    public prenom : string,
-    public nom : string,
-    public username : string,
-    public password : string,
-    public email : string,
-    public number : number,
-    public cin : string,
-    public isAActive : boolean
+    public id?: number,
+    public prenom? : string,
+    public nom? : string,
+    public username? : string,
+    public password? : string,
+    public email? : string,
+    public number? : number,
+    public cin? : string,
+    public isActive? : boolean
   ) {}
 }

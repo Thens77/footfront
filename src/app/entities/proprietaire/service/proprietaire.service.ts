@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IProprietaire } from '../proprietaire.model';
+import { IProprietaire, Proprietaire } from '../proprietaire.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +14,8 @@ export class ProprietaireService {
     return this.httpClient.get<IProprietaire[]>(`${this.baseURL}`);
   }
 
-  find(id: number): Observable<IProprietaire[]> {
-    return this.httpClient.get<IProprietaire[]>(`${this.baseURL}/form/${id}`);
+  find(id: number): Observable<Proprietaire> {
+    return this.httpClient.get<Proprietaire>(`${this.baseURL}/${id}`);
   }
 
   add(matiere: IProprietaire): Observable<IProprietaire> {

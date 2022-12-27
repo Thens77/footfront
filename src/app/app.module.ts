@@ -19,7 +19,10 @@ import { CommonModule } from '@angular/common';
 import { ReservationUpdateComponent } from './entities/reservation/update/reservation-update.component';
 import { ClubUpdateComponent } from './entities/club/update/club-update.component';
 import { MatDialogModule} from '@angular/material/dialog' ;
-import { GoogleMapsModule } from '@angular/google-maps'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreneauUpdateComponent } from './entities/creneau/update/creneau-update.component';
+
+
 @NgModule({
   declarations: [
     ClubComponent,
@@ -33,6 +36,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     MainComponent,
     NavbarComponent,
     ReservationUpdateComponent,
+    CreneauUpdateComponent
+
   ],
   imports: [
     BrowserAnimationsModule,
@@ -45,7 +50,8 @@ import { GoogleMapsModule } from '@angular/google-maps'
     RouterModule,
     CommonModule,
     MatDialogModule,
-    GoogleMapsModule
+    NgbModule
+  
     
   ],
   providers: [
@@ -55,7 +61,9 @@ import { GoogleMapsModule } from '@angular/google-maps'
       useClass: AuthInterceptor,
       multi: true,
     },
+   
   ],
   bootstrap: [AppComponent],
 })
+
 export class AppModule {}

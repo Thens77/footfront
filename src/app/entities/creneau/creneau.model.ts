@@ -5,8 +5,8 @@ export interface ICreneau {
 }
 export class Creneau implements ICreneau {
   constructor(
-    public id: number,
-    public heureDebut: string,
-    public heureFin: string
+    public id?: number,
+    public heureDebut?: string,
+    public heureFin?: string
   ) {}
 }

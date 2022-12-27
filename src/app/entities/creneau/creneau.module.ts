@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
     CreneauComponent,
     CreneauDeleteComponent,
     CreneauDetailComponent,
-    CreneauUpdateComponent
   ],
   imports: [
     FormsModule,

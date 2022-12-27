@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IReservation } from '../../reservation/reservation.model';
-import { ITerrain } from '../../terrain/terrain.model';
 import { ICreneau } from '../creneau.model';
 
 @Injectable({
@@ -16,8 +14,8 @@ export class CreneauService {
     return this.httpClient.get<ICreneau[]>(`${this.baseURL}`);
   }
 
-  find(id: number): Observable<ICreneau[]> {
-    return this.httpClient.get<ICreneau[]>(`${this.baseURL}/form/${id}`);
+  find(id: number): Observable<ICreneau> {
+    return this.httpClient.get<ICreneau>(`${this.baseURL}/${id}`);
   }
   findDispo(terrain: number, date: Date): Observable<any> {
     return this.httpClient.post(`${this.baseURL}/dispo`, {

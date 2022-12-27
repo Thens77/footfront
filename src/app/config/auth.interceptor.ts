@@ -15,7 +15,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
     const token =
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY3MjAyNjEwOCwiaWF0IjoxNjcxOTkwMTA4fQ.clix6i94kdvOqRU9L84aVI6kqawowGh8YXwn0pl5oo8';
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY3MjIwNTIyMCwiaWF0IjoxNjcyMTY5MjIwfQ.WiViC0s-jc5Jzxc-b7lB1Ebt6K-VuSIPtZyQiRCUvu4';
     if (token !== null) {
       
       // for Spring Boot back-end

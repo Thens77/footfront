@@ -52,7 +52,11 @@ const routes: Routes = [
       },
     },
     {
-      path:'nav',
+      path:'club/new',
+      component: NavbarComponent,
+    },
+    {
+      path:'club/:id',
       component: NavbarComponent,
     },
     {

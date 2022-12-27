@@ -21,7 +21,12 @@ export class ClubService {
   get(id?: number): Observable<Club> {
     return this.httpClient.get<Club>(`${this.baseURL}/${id}`);
   }
-  update(id: number, club: Club): Observable<Object> {
+
+  getbyProp(id?: number): Observable<Club[]> {
+    return this.httpClient.get<Club[]>(`${this.baseURL}/prop/${id}`);
+  }
+
+  update(id?: number, club?: Club): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, club);
   }
   delete(id: number): Observable<Object> {

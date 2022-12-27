@@ -7,7 +7,6 @@ import { ClubUpdateComponent } from './update/club-update.component';
 import { RouterModule } from '@angular/router';
 
 
-
 @NgModule({
   declarations: [ 
     ClubDeleteComponent,
@@ -16,6 +15,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule,
     CommonModule ,
-    GoogleMapsModule],
+    GoogleMapsModule,
+    ]
 })
 export class ClubModule {}
