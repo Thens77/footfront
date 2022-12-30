@@ -11,12 +11,12 @@ export interface ITerrain{
 }
 export class Terrain implements ITerrain {
   constructor(
-    public id: number,
-    public size: string,
-    public nbrJoueurs: number,
-    public prix: number,
-    public description: string,
-    public picByte: string,
-    public club: Club
+    public id?: number,
+    public size?: string,
+    public nbrJoueurs?: number,
+    public prix?: number,
+    public description?: string,
+    public picByte?: string,
+    public club?: Club
   ) {}
 }

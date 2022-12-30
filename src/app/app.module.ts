@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule , CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +7,6 @@ import { ArticleComponent } from './entities/article/list/article.component';
 import { DashboardComponent } from './layouts/dashboard/dashboard.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { MainComponent } from './layouts/main/main.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './config/auth.guard';
 import { AuthInterceptor } from './config/auth.interceptor'; 
@@ -19,24 +18,38 @@ import { CommonModule } from '@angular/common';
 import { ReservationUpdateComponent } from './entities/reservation/update/reservation-update.component';
 import { ClubUpdateComponent } from './entities/club/update/club-update.component';
 import { MatDialogModule} from '@angular/material/dialog' ;
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreneauUpdateComponent } from './entities/creneau/update/creneau-update.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { CreneauComponent } from './entities/creneau/list/creneau.component';
+import { CommentaireUpdateComponent } from './entities/commentaire/update/commentaire-update.component';
+import { HomeclubComponent } from './entities/club/homeclub/homeclub.component';
+import { ClubTComponent } from './entities/club/club-t/club-t.component';
+import { TerrainComponent } from './entities/terrain/list/terrain.component';
+import { NavbarComponentC } from './layouts/navbarC/navbar.component';
+import { NavbarComponentT } from './layouts/navbarT/navbar.component';
+import { ListTerrain2Component } from './entities/terrain/list-terrain2/list-terrain2.component';
 
 @NgModule({
   declarations: [
     ClubComponent,
-
     ClubUpdateComponent,
-
     ArticleComponent,
     AppComponent,
     DashboardComponent,
     FooterComponent,
     MainComponent,
-    NavbarComponent,
+    NavbarComponentC,
     ReservationUpdateComponent,
-    CreneauUpdateComponent
+    CreneauUpdateComponent,
+    CreneauComponent,
+    CommentaireUpdateComponent,
+    ClubUpdateComponent,
+    HomeclubComponent,
+    ClubTComponent,
+    TerrainComponent,
+    NavbarComponentT,
+    ListTerrain2Component,
 
   ],
   imports: [
@@ -50,9 +63,8 @@ import { CreneauUpdateComponent } from './entities/creneau/update/creneau-update
     RouterModule,
     CommonModule,
     MatDialogModule,
-    NgbModule
-  
-    
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     AuthGuard,
@@ -60,8 +72,7 @@ import { CreneauUpdateComponent } from './entities/creneau/update/creneau-update
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    },
-   
+    },  
   ],
   bootstrap: [AppComponent],
 })

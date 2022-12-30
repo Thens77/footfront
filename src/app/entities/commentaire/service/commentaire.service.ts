@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ICommentaire } from '../commentaire.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentaireService {
+  subjectNotifier: Subject<null> = new Subject<null>();
   private baseURL = 'http://localhost:4900/commentaires';
   constructor(private httpClient: HttpClient) {}
 
@@ -26,5 +27,8 @@ export class CommentaireService {
   }
   delete(id: number): Observable<ICommentaire> {
     return this.httpClient.get(`${this.baseURL}/delete/${id}`);
+  }
+  notifyAboutChange() {
+    this.subjectNotifier.next(null);
   }
 }

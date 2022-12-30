@@ -15611,7 +15611,7 @@ h6 {
     padding: 10px 25px;
 }
 
-.dropdown-menu .dropdown-footer a {
+.dropdown-menu .dropdown-footer {
     color: #444444;
     text-decoration: underline;
 }
@@ -15823,7 +15823,7 @@ h6 {
     font-weight: 600;
 }
 
-.breadcrumb a {
+.breadcrumb {
     color: #899bbd;
     transition: 0.3s;
 }
@@ -15880,7 +15880,7 @@ h6 {
     }
 }
 
-.logo img {
+.logo-admin img {
     max-height: 26px;
     margin-right: 6px;
 }

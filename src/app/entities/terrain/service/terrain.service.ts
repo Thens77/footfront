@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ITerrain } from '../terrain.model';
+import { ITerrain, Terrain } from '../terrain.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +10,11 @@ export class TerrainService {
   private baseURL = 'http://localhost:4900/terrains';
   constructor(private httpClient: HttpClient) {}
 
-  list(): Observable<ITerrain[]> {
-    return this.httpClient.get<ITerrain[]>(`${this.baseURL}`);
+  list(idc? : number): Observable<Terrain[]> {
+    if(idc){
+      return this.httpClient.get<Terrain[]>(`${this.baseURL}/club/${idc}`);
+    }
+    return this.httpClient.get<Terrain[]>(`${this.baseURL}`);
   }
 
   find(id: number): Observable<ITerrain> {

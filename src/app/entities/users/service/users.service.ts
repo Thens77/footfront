@@ -14,8 +14,8 @@ export class UsersService {
     return this.httpClient.get<IUsers[]>(`${this.baseURL}`);
   }
 
-  find(id: number): Observable<IUsers[]> {
-    return this.httpClient.get<IUsers[]>(`${this.baseURL}/form/${id}`);
+  find(id: number): Observable<IUsers> {
+    return this.httpClient.get<IUsers>(`${this.baseURL}/${id}`);
   }
 
   add(matiere: IUsers): Observable<IUsers> {

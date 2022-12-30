@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Creneau, ICreneau } from '../creneau.model';
 import { CreneauService } from '../service/creneau.service';
-import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
-
 
 @Component({
   selector: 'app-creneau-update',
@@ -20,7 +19,7 @@ export class CreneauUpdateComponent implements OnInit {
     heureFin: [],
     
   });
-  constructor(private creneauService : CreneauService ,private router : Router, protected fb: FormBuilder , protected activatedRoute : ActivatedRoute) { }
+  constructor(public dialog: MatDialog ,private creneauService : CreneauService ,private router : Router, protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
     
@@ -38,17 +37,18 @@ export class CreneauUpdateComponent implements OnInit {
       heureFin: creneau.heureFin,
     });
   }
-  time: NgbTimeStruct = {hour: 13, minute: 30, second: 30};
   seconds = true;
   save():void{
-    this.creneau.heureDebut =  `${this.creneau.heureDebut}:00`
-    this.creneau.heureFin =  `${this.creneau.heureFin}:00`
+    
     console.log("amm "+this.creneau.heureDebut);
     
    // this.editForm.reset();
     console.log(this.creneau.heureFin);
     if(this.editForm.get(['id'])!.value === undefined ) { 
+      this.creneau.heureDebut =  `${this.creneau.heureDebut}:00`
+      this.creneau.heureFin =  `${this.creneau.heureFin}:00`
       this.creneauService.add(this.creneau).subscribe(data =>{
+        this.openDialog('500ms', '500ms');
         console.log(data);
         //this.router.navigate(['/dashboard/creneau'])
         console.log("done")
@@ -60,7 +60,10 @@ export class CreneauUpdateComponent implements OnInit {
       );
     }
    else{
+    this.creneau.heureDebut =  `${this.creneau.heureDebut}`
+      this.creneau.heureFin =  `${this.creneau.heureFin}`
     this.creneauService.update(this.id!,this.creneau).subscribe(data =>{
+      this.openDialog('500ms', '500ms');
       console.log(data);
       this.router.navigate(['/dashboard/creneau'])
 
@@ -69,5 +72,32 @@ export class CreneauUpdateComponent implements OnInit {
     )
    }
    
+  }
+
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open( SuccessAlertDialog , {
+      width: '250px'
+     
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.router.navigate(['dashboard/matieres']);
+    });
+  }
+}
+
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: 'success-alert-dialog.html',
+})
+export class SuccessAlertDialog {
+  constructor(public dialogRef: MatDialogRef<SuccessAlertDialog>) {
+
+  }
+
+  closeDialog() {
+    //Write your stuff here
+    this.dialogRef.close(); // <- Closes the dialog
   }
 }

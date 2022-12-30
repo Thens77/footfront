@@ -4,7 +4,7 @@ import { Club, IClub } from '../club.model';
 import { ClubService } from '../service/club.service';
 import { Location } from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import * as L from 'leaflet';
 import { ProprietaireService } from '../../proprietaire/service/proprietaire.service';
 import { IProprietaire, Proprietaire } from '../../proprietaire/proprietaire.model';
@@ -42,7 +42,7 @@ export class ClubUpdateComponent implements OnInit {
    
   });
 
-  constructor(private proporietaireService : ProprietaireService,private router :Router ,private location : Location ,public dialog: MatDialog , private clubService : ClubService , protected fb: FormBuilder , protected activatedRoute : ActivatedRoute) { 
+  constructor(private proporietaireService : ProprietaireService,private router :Router ,private location : Location ,public dialog: MatDialog , private clubService : ClubService , protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { 
    
   }
 

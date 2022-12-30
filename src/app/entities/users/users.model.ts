@@ -11,13 +11,13 @@ export interface IUsers {
 }
 export class Users implements IUsers {
   constructor(
-    public id: number,
-    public prenom: string,
-    public nom: string,
-    public username: string,
-    public password: string,
-    public email: string,
-    public number: number,
-    public cin: string
+    public id?: number,
+    public prenom?: string,
+    public nom?: string,
+    public username?: string,
+    public password?: string,
+    public email?: string,
+    public number?: number,
+    public cin?: string
   ) {}
 }

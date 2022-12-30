@@ -14,6 +14,10 @@ export class CreneauService {
     return this.httpClient.get<ICreneau[]>(`${this.baseURL}`);
   }
 
+  listByClub(id?: number): Observable<ICreneau[]> {
+    return this.httpClient.get<ICreneau[]>(`${this.baseURL}/club/${id}`);
+  }
+
   find(id: number): Observable<ICreneau> {
     return this.httpClient.get<ICreneau>(`${this.baseURL}/${id}`);
   }
