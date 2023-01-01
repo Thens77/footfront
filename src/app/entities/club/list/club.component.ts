@@ -14,7 +14,7 @@ import { ClubService } from '../service/club.service';
 export class ClubComponent implements OnInit {
   clubs : Club[] | undefined ;
   prop : Proprietaire | undefined;
-  idp : number = 3 ;
+  idp : number = Number(localStorage.getItem('userId')) ;
   searchText : any ;
   data1: number | undefined;
   confirme = false ;
@@ -29,6 +29,7 @@ export class ClubComponent implements OnInit {
   retrievedImage : any;
 
   ngOnInit(): void {
+    console.log(localStorage.getItem("role"));
     this.get();
     this.ionViewDidLoad()
   }

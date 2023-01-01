@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Club } from '../../club/club.model';
+import { ClubService } from '../../club/service/club.service';
 import { Creneau, ICreneau } from '../creneau.model';
 import { CreneauService } from '../service/creneau.service';
 
@@ -12,22 +14,34 @@ import { CreneauService } from '../service/creneau.service';
 })
 export class CreneauUpdateComponent implements OnInit {
   creneau: Creneau = new Creneau();
+  club: Club = new Club();
+  idc!: number;
   id!: number | undefined;
   editForm = this.fb.group({
     id: [],
     heureDebut: [],
     heureFin: [],
-    
+    club : [] 
   });
-  constructor(public dialog: MatDialog ,private creneauService : CreneauService ,private router : Router, protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
+  constructor(public dialog: MatDialog ,private clubService: ClubService,private creneauService : CreneauService ,private router : Router, protected fb: UntypedFormBuilder , protected activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
-    
+    this.idc = Number(this.activatedRoute.parent?.snapshot.params['id']);
     this.id =this.activatedRoute.snapshot.params["id"];
+    this.getClub();
     this.creneauService.find(this.id!).subscribe( data => {
       this.creneau = data ;
     }, error => console.log(error))
   
+  }
+  getClub(): void {
+    this.clubService.get(this.idc!).subscribe(
+      (data) => {
+        this.club = data;
+        console.log(this.club)
+      },
+      (error) => console.log(error)
+    );
   }
 
   protected updateForm(creneau: ICreneau): void {
@@ -35,18 +49,20 @@ export class CreneauUpdateComponent implements OnInit {
       id: creneau.id,
       heureDebut : creneau.heureDebut,
       heureFin: creneau.heureFin,
+      club : creneau.club
     });
   }
   seconds = true;
   save():void{
     
-    console.log("amm "+this.creneau.heureDebut);
+   
     
    // this.editForm.reset();
     console.log(this.creneau.heureFin);
     if(this.editForm.get(['id'])!.value === undefined ) { 
       this.creneau.heureDebut =  `${this.creneau.heureDebut}:00`
       this.creneau.heureFin =  `${this.creneau.heureFin}:00`
+      this.creneau.club = this.club ;
       this.creneauService.add(this.creneau).subscribe(data =>{
         this.openDialog('500ms', '500ms');
         console.log(data);
@@ -62,6 +78,7 @@ export class CreneauUpdateComponent implements OnInit {
    else{
     this.creneau.heureDebut =  `${this.creneau.heureDebut}`
       this.creneau.heureFin =  `${this.creneau.heureFin}`
+      this.creneau.club = this.club ;
     this.creneauService.update(this.id!,this.creneau).subscribe(data =>{
       this.openDialog('500ms', '500ms');
       console.log(data);

@@ -34,7 +34,9 @@
                     <input type="time" matInput class="form-control" class="bg-white text-black"  name="week" [(ngModel)]="creneau.heureFin" id="heureFin" name="heureFin"  formControlName="heureFin"  min="09:00" max="18:00">
                  </mat-form-field>
                 
-            
+                 <div class="form-group" hidden>
+                    <input required="true" type="text" placeholder="club" class="form-control" id="club" name="club" [(ngModel)]=" creneau.club" formControlName="club">
+                </div>
             </div>
             </div>
             <div class="row text-center">

@@ -10,13 +10,13 @@ export interface IClient {
 }
 export class Client implements IClient {
   constructor(
-    public id: number,
-    public prenom: string,
-    public nom: string,
-    public username: string,
-    public password: string,
-    public email: string,
-    public number: number,
-    public cin: string
+    public id?: number,
+    public prenom?: string,
+    public nom?: string,
+    public username?: string,
+    public password?: string,
+    public email?: string,
+    public number?: number,
+    public cin?: string
   ) {}
 }

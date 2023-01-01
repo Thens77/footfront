@@ -13,6 +13,9 @@ export class ReservationService {
   list(): Observable<IReservation[]> {
     return this.httpClient.get<IReservation[]>(`${this.baseURL}`);
   }
+  listByTerrain(id : number): Observable<IReservation[]> {
+    return this.httpClient.get<IReservation[]>(`${this.baseURL}/terrain/${id}`);
+  }
 
   find(id: number): Observable<IReservation[]> {
     return this.httpClient.get<IReservation[]>(`${this.baseURL}/form  `);

@@ -29,6 +29,26 @@ import { TerrainComponent } from './entities/terrain/list/terrain.component';
 import { NavbarComponentC } from './layouts/navbarC/navbar.component';
 import { NavbarComponentT } from './layouts/navbarT/navbar.component';
 import { ListTerrain2Component } from './entities/terrain/list-terrain2/list-terrain2.component';
+import { TerrainUpdateComponent } from './entities/terrain/update/terrain-update.component';
+import { HomeComponent, SignInDialog, SignUpDialog } from './layouts/home/home.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import resourceTimelinePlugin from '@fullcalendar/resource-timeline';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import { CalendierComponent } from './entities/reservation/calendier/calendier.component';
+
+FullCalendarModule.registerPlugins([ 
+  interactionPlugin,
+  dayGridPlugin,
+  resourceTimelinePlugin,
+  timeGridPlugin,
+  listPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -48,23 +68,33 @@ import { ListTerrain2Component } from './entities/terrain/list-terrain2/list-ter
     HomeclubComponent,
     ClubTComponent,
     TerrainComponent,
+    TerrainUpdateComponent,
     NavbarComponentT,
     ListTerrain2Component,
+    HomeComponent,
+    SignInDialog,
+    SignUpDialog,
+    CalendierComponent,
+
 
   ],
   imports: [
+    NgMultiSelectDropDownModule,
+    FullCalendarModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule,
     RouterModule,
     CommonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    NgxWebstorageModule.forRoot(),
+    
   ],
   providers: [
     AuthGuard,

@@ -13,12 +13,12 @@ export interface IReservation {
 }
 export class Reservation implements IReservation {
   constructor(
-    public id: number,
-    public nbrjoueur: number,
-    public reservedBy: Client,
-    public terrain: Terrain,
-    public creneau: Creneau,
-    public date: string,
-    public etat: boolean
+    public id?: number,
+    public nbrjoueur?: number,
+    public reservedBy?: Client,
+    public terrain?: Terrain,
+    public creneau?: Creneau,
+    public date?: string,
+    public etat?: boolean
   ) {}
 }

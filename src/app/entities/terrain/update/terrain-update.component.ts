@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Club } from '../../club/club.model';
 import { TerrainService } from '../service/terrain.service';
 import { ITerrain, Terrain } from '../terrain.model';
 import { UntypedFormBuilder } from '@angular/forms';
+import { ClubService } from '../../club/service/club.service';
 
 
 @Component({
@@ -14,14 +15,14 @@ import { UntypedFormBuilder } from '@angular/forms';
 })
 export class TerrainUpdateComponent implements OnInit {
   terrain: Terrain = new Terrain();
-  id!: number;
+  idc!: number;
+  idt!: number;
   photos!: File;
   size: string | any;
   nbrJoueurs: number | any;
   prix: number | any;
   description: string | any;
   club: Club = new Club();
-
   imageName: any;
   editForm = this.fb.group({
     id: [],
@@ -34,22 +35,37 @@ export class TerrainUpdateComponent implements OnInit {
   });
 
   constructor(
- 
     private router: Router,
     public dialog: MatDialog,
     private terrainService: TerrainService,
+    private clubService: ClubService,
     protected fb: UntypedFormBuilder,
     protected activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params['id'];
+    this.idc = Number(this.activatedRoute.parent?.snapshot.params['id']);
+    this.idt = this.activatedRoute.snapshot.params['id'];
+    console.log(this.idc)
+    console.log(this.idt)
+    this.getClub();
+    this.getTerrain();
   }
 
   getClub(): void {
-    this.terrainService.find(this.id!).subscribe(
+    this.clubService.get(this.idc!).subscribe(
+      (data) => {
+        this.club = data;
+        console.log(this.club)
+      },
+      (error) => console.log(error)
+    );
+  }
+  getTerrain(): void {
+    this.terrainService.find(this.idt!).subscribe(
       (data) => {
         this.terrain = data;
+        console.log(this.terrain)
       },
       (error) => console.log(error)
     );
@@ -88,33 +104,58 @@ export class TerrainUpdateComponent implements OnInit {
       nbrJoueurs: terrain.nbrJoueurs,
       prix: terrain.prix,
       description: terrain.description,
-
-      club: terrain.club,
+      club: this.club ,
     });
   }
 
   save(): void {
     console.log(this.terrain.description + "////////////////////////////////////////////////////////////////////////////////////");
     if (this.editForm.get(['id'])!.value === undefined) {
+      this.terrain.club = this.club ;
       this.terrainService.add(this.terrain).subscribe(
         (data) => {
-         
+          this.openDialog('500ms', '500ms');
           console.log(data);
         },
         (error) => console.log(error)
       );
     } else {
-      this.terrainService.update(this.id, this.terrain).subscribe(
+      this.terrain.club = this.club ;
+      this.terrainService.update(this.idt, this.terrain).subscribe(
         (data) => {
           console.log(data);
-         
+          this.openDialog('500ms', '500ms');
           
         },
         (error) => console.log(error)
       );
     }
   }
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    let dialogRef = this.dialog.open( SuccessAlertDialog , {
+      width: '250px'
+     
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      // this.router.navigate(['dashboard/matieres']);
+    });
+  }
  
   
+}
+
+@Component({
+  selector: 'dialog-elements-example-dialog',
+  templateUrl: 'success-alert-dialog.html',
+})
+export class SuccessAlertDialog {
+  constructor(public dialogRef: MatDialogRef<SuccessAlertDialog>) {
+
+  }
+
+  closeDialog() {
+    //Write your stuff here
+    this.dialogRef.close(); // <- Closes the dialog
+  }
 }

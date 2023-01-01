@@ -6,12 +6,13 @@ import { ReservationUpdateComponent } from './update/reservation-update.componen
 
 import { FormsModule } from '@angular/forms';
 import { ReservationComponent } from './list/reservation.component';
+import { CalendierComponent } from './calendier/calendier.component';
 
 @NgModule({
   declarations: [
     ReservationComponent,
     ReservationDeleteComponent,
-    ReservationDetailComponent, 
+    ReservationDetailComponent,
   ],
   imports: [ 
     FormsModule,

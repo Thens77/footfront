@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders , HttpBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, config, map, mapTo, Observable, of, tap } from 'rxjs';
 import { Login } from './login.model';
@@ -16,16 +16,18 @@ type JwtToken = {
 export class AuthService {
   
   private baseURL = "http://localhost:4900"
-  
+  private httpClient: HttpClient;
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private loggedUser: string | null | undefined;
 
-  constructor(private http: HttpClient, private  router : Router) {}
+  constructor(private http: HttpClient, private  router : Router , private handler: HttpBackend) {
+    this.httpClient = new HttpClient(handler);
+  }
 
 
   login(credentials : Login): Observable<any> {
-    return this.http.post(`${this.baseURL}/authenticate` , credentials, httpOptions);
+    return this.httpClient.post(`${this.baseURL}/authenticate` , credentials, httpOptions);
   }
 
   logout(){
